@@ -71,10 +71,19 @@ $categories = $catStmt->fetchAll(PDO::FETCH_COLUMN);
             <?php foreach ($projects as $project): ?>
                 <?php
                 $cover = $project['midias'][0]['path'] ?? '';
+                $hasVideo = !empty(array_filter($project['midias'], fn($m) => $m['type'] === 'video'));
+                $firstVideo = $hasVideo ? current(array_filter($project['midias'], fn($m) => $m['type'] === 'video')) : null;
                 ?>
                 <div class="card-hover rounded-2xl border border-slate-800 bg-slate-950 p-6">
-                    <div class="flex h-40 items-center justify-center rounded-xl bg-slate-900 text-slate-400">
-                        <?php if ($cover): ?>
+                    <div class="relative flex h-40 items-center justify-center rounded-xl bg-slate-900 text-slate-400">
+                        <?php if ($hasVideo && $firstVideo): ?>
+                            <video class="h-full w-full rounded-xl object-cover" poster="<?= e($cover) ?>"><source src="<?= e($firstVideo['path']) ?>" type="video/mp4"></video>
+                            <div class="absolute inset-0 flex items-center justify-center rounded-xl bg-black/30">
+                                <button data-modal-open="modal-<?= $project['id'] ?>" class="flex h-12 w-12 items-center justify-center rounded-full bg-white/90 hover:bg-white">
+                                    <svg class="h-6 w-6 text-slate-900" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                                </button>
+                            </div>
+                        <?php elseif ($cover): ?>
                             <img src="<?= e($cover) ?>" alt="<?= e($project['titulo']) ?>" class="h-full w-full rounded-xl object-cover">
                         <?php else: ?>
                             <span>Sem mídia</span>
@@ -83,7 +92,7 @@ $categories = $catStmt->fetchAll(PDO::FETCH_COLUMN);
                     <p class="mt-4 text-sm font-semibold uppercase tracking-[0.2em] text-slate-400"><?= e($project['categoria']) ?></p>
                     <h3 class="mt-2 text-lg font-semibold text-white"><?= e($project['titulo']) ?></h3>
                     <p class="mt-2 text-sm text-slate-400 line-clamp-3"><?= e($project['descricao']) ?></p>
-                    <button data-modal-open="modal-<?= $project['id'] ?>" class="mt-4 text-sm font-semibold text-white">Ver detalhes</button>
+                    <button data-modal-open="modal-<?= $project['id'] ?>" class="mt-4 text-sm font-semibold text-white hover:underline">Ver detalhes</button>
                 </div>
 
                 <div id="modal-<?= $project['id'] ?>" class="modal fixed inset-0 z-50 items-center justify-center bg-black/70 px-6">
