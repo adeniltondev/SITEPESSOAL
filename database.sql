@@ -1,5 +1,13 @@
--- Banco de dados: sitepessoal
--- Execute no phpMyAdmin / Hostinger
+-- ============================================
+-- BANCO DE DADOS: sitepessoal
+-- PROPRIETÁRIO: Adenilton
+-- WhatsApp: 79988630142
+-- ============================================
+-- INSTRUÇÕES:
+-- 1. Execute este arquivo no phpMyAdmin do Hostinger
+-- 2. Para NOVAS COLUNAS, crie o SQL em arquivo separado: database-updates-YYYYMMDD.sql
+-- 3. Mantenha este arquivo como SCHEMA BASE apenas
+-- ============================================
 
 CREATE TABLE usuarios (
   id INT AUTO_INCREMENT PRIMARY KEY,
