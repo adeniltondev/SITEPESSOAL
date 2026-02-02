@@ -202,12 +202,18 @@ if ($mediaStmt) {
 
     <div class="grid gap-6 md:grid-cols-2">
         <div>
-            <label class="text-sm font-semibold text-slate-200">Status</label>
-            <select name="status" class="mt-2 w-full rounded-xl border border-slate-800 bg-slate-900 px-4 py-3 text-sm text-slate-200">
+            <label class="text-sm font-bold text-white">Capa do Projeto</label>
+            <input name="capa_image" type="file" accept="image/*" class="mt-2 w-full text-sm text-gray-300">
+            <p class="mt-1 text-xs text-gray-500">JPG, PNG ou WEBP. Recomendado: 600x400px</p>
+        </div>
+        <div>
+            <label class="text-sm font-bold text-white">Status</label>
+            <select name="status" class="mt-2 w-full rounded-xl border border-lime-400/20 bg-black px-4 py-3 text-sm text-white">
                 <option value="rascunho" <?= $project['status'] === 'rascunho' ? 'selected' : '' ?>>Rascunho</option>
                 <option value="publicado" <?= $project['status'] === 'publicado' ? 'selected' : '' ?>>Publicado</option>
             </select>
         </div>
+    </div>
         <div>
             <label class="text-sm font-semibold text-slate-200">Imagens (JPG, PNG, WEBP)</label>
             <input name="imagens[]" type="file" multiple accept="image/*" class="mt-2 w-full text-sm text-slate-300">
