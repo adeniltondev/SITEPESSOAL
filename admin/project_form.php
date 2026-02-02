@@ -214,23 +214,30 @@ if ($mediaStmt) {
             </select>
         </div>
     </div>
-        <div>
-            <label class="text-sm font-semibold text-slate-200">Imagens (JPG, PNG, WEBP)</label>
-            <input name="imagens[]" type="file" multiple accept="image/*" class="mt-2 w-full text-sm text-slate-300">
-        </div>
+
+    <div>
+        <label class="text-sm font-bold text-white">Imagens Adicionais (JPG, PNG, WEBP)</label>
+        <input name="imagens[]" type="file" multiple accept="image/*" class="mt-2 w-full text-sm text-gray-300">
     </div>
 
     <div>
-        <label class="text-sm font-semibold text-slate-200">Vídeo (MP4)</label>
-        <input name="video" type="file" accept="video/mp4,video/quicktime" class="mt-2 w-full text-sm text-slate-300">
+        <label class="text-sm font-bold text-white">Vídeo (MP4)</label>
+        <input name="video" type="file" accept="video/mp4,video/quicktime" class="mt-2 w-full text-sm text-gray-300">
     </div>
 
+    <?php if (!empty($project['capa_image'])): ?>
+        <div class="rounded-2xl border border-lime-400/20 bg-gray-950 p-6">
+            <p class="text-sm font-bold text-lime-400">Capa Atual</p>
+            <img src="<?= e($project['capa_image']) ?>" alt="Capa" class="mt-4 h-40 w-full rounded-lg object-cover">
+        </div>
+    <?php endif; ?>
+
     <?php if (!empty($media)): ?>
-        <div class="rounded-2xl border border-slate-800 bg-slate-950 p-6">
-            <p class="text-sm font-semibold text-slate-200">Mídias cadastradas</p>
+        <div class="rounded-2xl border border-lime-400/20 bg-gray-950 p-6">
+            <p class="text-sm font-bold text-lime-400">Mídias Adicionais</p>
             <div class="mt-4 grid gap-4 md:grid-cols-3">
                 <?php foreach ($media as $item): ?>
-                    <div class="rounded-xl border border-slate-800 bg-slate-900 p-3">
+                    <div class="rounded-xl border border-lime-400/20 bg-black p-3">
                         <?php if ($item['type'] === 'image'): ?>
                             <img src="<?= e($item['path']) ?>" alt="Mídia" class="h-32 w-full rounded-lg object-cover">
                         <?php else: ?>
