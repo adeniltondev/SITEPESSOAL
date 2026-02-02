@@ -21,6 +21,7 @@ require_login();
             <a class="hover:text-lime-400 transition" href="/admin/index.php">Dashboard</a>
             <a class="hover:text-lime-400 transition" href="/admin/projects.php">Projetos</a>
             <a class="hover:text-lime-400 transition" href="/admin/messages.php">Mensagens</a>
+            <a class="hover:text-lime-400 transition" href="/admin/settings.php">Configurações</a>
             <a class="hover:text-lime-400 transition" href="/admin/logout.php">Sair</a>
         </nav>
     </div>

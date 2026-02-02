@@ -1,5 +1,8 @@
 <?php
 // Home
+$heroStmt = $pdo->query('SELECT hero_image FROM home_config LIMIT 1');
+$heroConfig = $heroStmt->fetch();
+$heroImage = $heroConfig['hero_image'] ?? null;
 ?>
 <section class="fade-in">
     <div class="mx-auto grid max-w-6xl gap-10 px-6 py-16 lg:grid-cols-2 lg:items-center">
@@ -19,21 +22,17 @@
                 <a href="/?page=projetos" class="rounded-full border border-lime-400 px-6 py-3 text-sm font-bold text-lime-400 hover:bg-lime-400 hover:text-black transition">Ver portfólio</a>
             </div>
         </div>
-        <div class="rounded-3xl border border-lime-400/30 bg-gradient-to-br from-gray-900 via-black to-black p-8 shadow-2xl shadow-lime-400/20">
-            <div class="grid gap-6">
-                <div class="rounded-2xl border border-lime-400/20 bg-black/50 p-6">
-                    <p class="text-sm text-lime-400 font-bold">Performance & CRM</p>
-                    <p class="mt-2 text-xl font-semibold text-white">KPIs claros, funil integrado e automações que convertem.</p>
+        <div class="rounded-3xl border border-lime-400/30 bg-gradient-to-br from-gray-900 via-black to-black p-8 shadow-2xl shadow-lime-400/20 overflow-hidden">
+            <?php if ($heroImage): ?>
+                <img src="<?= e($heroImage) ?>" alt="Foto de destaque" class="w-full h-auto rounded-2xl object-cover">
+            <?php else: ?>
+                <div class="flex h-96 w-full items-center justify-center rounded-2xl bg-black text-gray-600">
+                    <div class="text-center">
+                        <svg class="mx-auto h-16 w-16 opacity-50" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+                        <p class="mt-4 text-sm">Foto de destaque</p>
+                    </div>
                 </div>
-                <div class="rounded-2xl border border-lime-400/20 bg-black/50 p-6">
-                    <p class="text-sm text-lime-400 font-bold">Tecnologia</p>
-                    <p class="mt-2 text-xl font-semibold text-white">Sites e sistemas alinhados à jornada do cliente.</p>
-                </div>
-                <div class="rounded-2xl border border-lime-400/20 bg-black/50 p-6">
-                    <p class="text-sm text-lime-400 font-bold">Processos</p>
-                    <p class="mt-2 text-xl font-semibold text-white">Estrutura e automação para crescimento escalável.</p>
-                </div>
-            </div>
+            <?php endif; ?>
         </div>
     </div>
 </section>

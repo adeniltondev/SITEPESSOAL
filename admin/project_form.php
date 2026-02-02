@@ -72,6 +72,31 @@ if (is_post()) {
             $editing = true;
         }
 
+        // Upload de capa do projeto
+        if (!empty($_FILES['capa_image']['tmp_name'])) {
+            $mime = mime_content_type($_FILES['capa_image']['tmp_name']);
+            $allowed = ['image/jpeg', 'image/png', 'image/webp'];
+            if (in_array($mime, $allowed, true)) {
+                // Remover capa antiga se existir
+                if (!empty($project['capa_image'])) {
+                    $oldFile = __DIR__ . '/../' . ltrim($project['capa_image'], '/');
+                    if (is_file($oldFile)) {
+                        unlink($oldFile);
+                    }
+                }
+
+                $ext = pathinfo($_FILES['capa_image']['name'], PATHINFO_EXTENSION);
+                $filename = 'capa-' . $id . '.' . $ext;
+                $destination = $config['upload_dir'] . '/' . $filename;
+                if (move_uploaded_file($_FILES['capa_image']['tmp_name'], $destination)) {
+                    $path = $config['upload_url'] . '/' . $filename;
+                    $stmt = $pdo->prepare('UPDATE projetos SET capa_image = :path WHERE id = :id');
+                    $stmt->execute([':path' => $path, ':id' => $id]);
+                    $project['capa_image'] = $path;
+                }
+            }
+        }
+
         // Upload de imagens
         if (!empty($_FILES['imagens']['name'][0])) {
             $allowed = ['image/jpeg', 'image/png', 'image/webp'];
@@ -130,8 +155,8 @@ if ($mediaStmt) {
 }
 ?>
 <div class="flex items-center justify-between">
-    <h1 class="text-2xl font-semibold text-white"><?= $editing ? 'Editar projeto' : 'Novo projeto' ?></h1>
-    <a href="/admin/projects.php" class="text-sm text-slate-300 hover:text-white">Voltar</a>
+    <h1 class="text-2xl font-bold text-white"><?= $editing ? 'Editar projeto' : 'Novo projeto' ?></h1>
+    <a href="/admin/projects.php" class="text-sm text-gray-300 hover:text-lime-400">Voltar</a>
 </div>
 
 <form method="post" enctype="multipart/form-data" class="mt-6 space-y-6">
