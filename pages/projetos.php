@@ -103,31 +103,43 @@ $categories = $catStmt->fetchAll(PDO::FETCH_COLUMN);
                 </div>
 
                 <div id="modal-<?= $project['id'] ?>" class="modal fixed inset-0 z-50 items-center justify-center bg-black/70 px-6">
-                    <div class="w-full max-w-3xl rounded-2xl border border-slate-800 bg-slate-950 p-6">
+                    <div class="w-full max-w-3xl rounded-2xl border border-lime-400/20 bg-gray-950 p-6">
                         <div class="flex items-start justify-between">
                             <div>
-                                <p class="text-sm font-semibold uppercase tracking-[0.2em] text-slate-400"><?= e($project['categoria']) ?></p>
-                                <h3 class="mt-2 text-2xl font-semibold text-white"><?= e($project['titulo']) ?></h3>
+                                <p class="text-sm font-bold uppercase tracking-[0.2em] text-lime-400"><?= e($project['categoria']) ?></p>
+                                <h3 class="mt-2 text-2xl font-bold text-white"><?= e($project['titulo']) ?></h3>
                             </div>
-                            <button data-modal-close class="rounded-full border border-slate-700 px-3 py-1 text-sm text-slate-300">Fechar</button>
+                            <button data-modal-close class="rounded-full border border-lime-400/20 px-3 py-1 text-sm text-lime-400 hover:border-lime-400/50">Fechar</button>
                         </div>
-                        <p class="mt-4 text-slate-300"><?= e($project['descricao']) ?></p>
-                        <div class="mt-4 grid gap-4 md:grid-cols-2">
-                            <?php foreach ($project['midias'] as $media): ?>
-                                <?php if ($media['type'] === 'image'): ?>
-                                    <img src="<?= e($media['path']) ?>" alt="<?= e($project['titulo']) ?>" class="h-48 w-full rounded-xl object-cover">
-                                <?php else: ?>
-                                    <video controls class="h-48 w-full rounded-xl">
-                                        <source src="<?= e($media['path']) ?>" type="video/mp4">
-                                    </video>
-                                <?php endif; ?>
-                            <?php endforeach; ?>
-                        </div>
-                        <div class="mt-4 text-sm text-slate-400">
-                            <p><strong class="text-slate-200">Cliente:</strong> <?= e($project['cliente']) ?></p>
-                            <p><strong class="text-slate-200">Ano:</strong> <?= e($project['ano']) ?></p>
+                        <p class="mt-4 text-gray-300"><?= e($project['descricao']) ?></p>
+                        <?php if (!empty($project['capa_image'])): ?>
+                            <img src="<?= e($project['capa_image']) ?>" alt="Capa do projeto" class="mt-4 h-64 w-full rounded-xl object-cover border border-lime-400/20">
+                        <?php endif; ?>
+                        <?php if (!empty($project['midias'])): ?>
+                            <div class="mt-4">
+                                <p class="text-sm font-bold text-lime-400 uppercase">Galeria</p>
+                                <div class="mt-3 grid gap-4 md:grid-cols-2">
+                                    <?php foreach ($project['midias'] as $media): ?>
+                                        <?php if ($media['type'] === 'image'): ?>
+                                            <img src="<?= e($media['path']) ?>" alt="<?= e($project['titulo']) ?>" class="h-48 w-full rounded-xl object-cover border border-lime-400/20">
+                                        <?php else: ?>
+                                            <video controls class="h-48 w-full rounded-xl border border-lime-400/20">
+                                                <source src="<?= e($media['path']) ?>" type="video/mp4">
+                                            </video>
+                                        <?php endif; ?>
+                                    <?php endforeach; ?>
+                                </div>
+                            </div>
+                        <?php endif; ?>
+                        <div class="mt-4 text-sm text-gray-400 border-t border-lime-400/20 pt-4">
+                            <?php if (!empty($project['cliente'])): ?>
+                                <p><strong class="text-white">Cliente:</strong> <?= e($project['cliente']) ?></p>
+                            <?php endif; ?>
+                            <?php if (!empty($project['ano'])): ?>
+                                <p><strong class="text-white">Ano:</strong> <?= e($project['ano']) ?></p>
+                            <?php endif; ?>
                             <?php if (!empty($project['url'])): ?>
-                                <p><strong class="text-slate-200">URL:</strong> <a class="text-white underline" href="<?= e($project['url']) ?>" target="_blank" rel="noopener">Acessar</a></p>
+                                <p><strong class="text-white">URL:</strong> <a class="text-lime-400 hover:text-lime-300 underline" href="<?= e($project['url']) ?>" target="_blank" rel="noopener">Acessar projeto</a></p>
                             <?php endif; ?>
                         </div>
                     </div>
