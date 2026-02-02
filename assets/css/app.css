@@ -1,5 +1,12 @@
 :root {
   color-scheme: dark;
+  --neon-green: #CCFF00;
+  --dark-bg: #000000;
+}
+
+body {
+  background-color: #000000;
+  color: #ffffff;
 }
 
 .fade-in {
@@ -17,7 +24,7 @@
 
 .card-hover:hover {
   transform: translateY(-4px);
-  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.25);
+  box-shadow: 0 20px 45px rgba(204, 255, 0, 0.2);
 }
 
 .line-clamp-3 {
