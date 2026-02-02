@@ -14,14 +14,14 @@ require_login();
     <link rel="stylesheet" href="/assets/css/app.css">
 </head>
 <body class="bg-slate-950 text-slate-100">
-<header class="border-b border-slate-800 bg-slate-950/80">
+<header class="border-b border-lime-400/20 bg-black/80">
     <div class="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
-        <p class="text-lg font-semibold text-white">Painel Administrativo</p>
-        <nav class="flex items-center gap-4 text-sm text-slate-300">
-            <a class="hover:text-white" href="/admin/index.php">Dashboard</a>
-            <a class="hover:text-white" href="/admin/projects.php">Projetos</a>
-            <a class="hover:text-white" href="/admin/messages.php">Mensagens</a>
-            <a class="hover:text-white" href="/admin/logout.php">Sair</a>
+        <p class="text-lg font-bold text-lime-400">Painel Administrativo</p>
+        <nav class="flex items-center gap-4 text-sm text-gray-300">
+            <a class="hover:text-lime-400 transition" href="/admin/index.php">Dashboard</a>
+            <a class="hover:text-lime-400 transition" href="/admin/projects.php">Projetos</a>
+            <a class="hover:text-lime-400 transition" href="/admin/messages.php">Mensagens</a>
+            <a class="hover:text-lime-400 transition" href="/admin/logout.php">Sair</a>
         </nav>
     </div>
 </header>

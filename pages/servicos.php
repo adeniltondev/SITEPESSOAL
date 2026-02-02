@@ -25,17 +25,17 @@ $services = [
 ?>
 <section class="fade-in">
     <div class="mx-auto max-w-6xl px-6 py-16">
-        <p class="text-sm font-semibold uppercase tracking-[0.3em] text-slate-400">Serviços</p>
-        <h1 class="mt-4 text-4xl font-semibold text-white">Soluções completas para marketing e tecnologia</h1>
-        <p class="mt-4 text-lg text-slate-300">Abordagem consultiva, execução ágil e foco em resultados mensuráveis.</p>
+        <p class="text-sm font-bold uppercase tracking-[0.3em] text-lime-400">Serviços</p>
+        <h1 class="mt-4 text-4xl font-bold text-white">Soluções completas para marketing e tecnologia</h1>
+        <p class="mt-4 text-lg text-gray-300">Abordagem consultiva, execução ágil e foco em resultados mensuráveis.</p>
         <div class="mt-10 grid gap-6 md:grid-cols-2">
             <?php foreach ($services as $service): ?>
-                <div class="card-hover rounded-2xl border border-slate-800 bg-slate-950 p-6">
+                <div class="card-hover rounded-2xl border border-lime-400/20 bg-gray-950 p-6 hover:border-lime-400/50">
                     <div class="flex items-center gap-4">
-                        <span class="rounded-xl bg-slate-900 p-3 text-white"><?= $service['icon'] ?></span>
+                        <span class="rounded-xl bg-black p-3 text-lime-400"><?= $service['icon'] ?></span>
                         <div>
-                            <p class="text-lg font-semibold text-white"><?= e($service['title']) ?></p>
-                            <p class="mt-2 text-sm text-slate-400"><?= e($service['desc']) ?></p>
+                            <p class="text-lg font-bold text-white"><?= e($service['title']) ?></p>
+                            <p class="mt-2 text-sm text-gray-400"><?= e($service['desc']) ?></p>
                         </div>
                     </div>
                 </div>
