@@ -4,9 +4,9 @@ $config = require __DIR__ . '/config.php';
 date_default_timezone_set($config['timezone']);
 
 $host = 'localhost';
-$dbname = 'sitepessoal';
-$user = 'root';
-$pass = '';
+$dbname = 'adeniltonmarketi_sitepssoal';
+$user = 'adeniltonmarketi_sitepssoal';
+$pass = 'nV0$F9@qK2oJgx^*';
 $charset = 'utf8mb4';
 
 $dsn = "mysql:host={$host};dbname={$dbname};charset={$charset}";
