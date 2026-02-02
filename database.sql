@@ -38,3 +38,7 @@ CREATE TABLE contatos (
   mensagem TEXT NOT NULL,
   criado_em TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- Usuário admin padrão (email: admin, senha: admin12345670236)
+INSERT INTO usuarios (nome, email, senha_hash) VALUES
+('Administrador', 'admin', '$2y$10$zFq3LFvMp6hTbZnKJ5lq5ehvVf5CqCbqLPVDfvQJl0aB3vLwpBVQK');
